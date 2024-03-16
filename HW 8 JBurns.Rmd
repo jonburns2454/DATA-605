@@ -1,0 +1,56 @@
+---
+title: "Week 8 HW JBurns"
+author: "Jonathan Burns"
+date: "2024-03-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#11 and #14 on page 303 of probability text #1 on page 320-321
+
+11. A company buys 100 lightbulbs, each of which has an exponential lifetime of 1000 hours. What is the expected time for the first of these bulbs to burn out? (See Exercise 10.)
+
+According to question 10, we can surmise that in an exponential situation, the minimum value will be represented as E(M) = $\mu/n$.
+
+For this problem we have $E(M) = 1000/10 = 10$
+
+14.Assume that X1 and X2 are independent random variables, each having an exponential density with parameter $\lambda$. Show that $Z = X1 - X2$ has density
+
+$$fZ(z) = (\frac{1}{2})\lambda e^{-\lambda |z|}$$
+
+I will be utilizing the convolutional formula featured in this video from MIT :<https://www.youtube.com/watch?v=f8Nli1AfygM&ab_channel=MITOpenCourseWare>
+
+Beginning: $$w = x + y$$
+
+Transforms into : $f_{W}(w) = \int\limits_{-\infty}^{\infty} f_{X}(x) \int_{Y}(w - x) dx$
+
+Apply the same idea to our case, but will need to flip the signs:
+
+$$Z = X + (-Y)$$
+
+$f_{Z}(z) = \int\limits_{-\infty}^{\infty} f_{X}(x) f_{-Y}(z - x) dx$
+
+Step 1, set up $f_{-Y}$:
+
+$f_{-y}(z-x) = f_{y}(x-z)$
+
+Step 2 Solve $\int\limits_{-\infty}^{\infty} f_{X}(x) f_{Y}(x - z) dx$ when z \< 0:
+
+$$\int\limits_{0}^{\infty} \lambda e^{-\lambda x}\lambda e^{-\lambda (x -z)}dx$$
+
+$$\lambda e^{\lambda x}\int\limits_{0}^{\infty}\lambda e^{-2\lambda x}dx$$
+
+When z \<0: $$\lambda e^{\lambda z} (-\frac{1}{2}e^{-2\lambda x}|_0^{\infty})=\frac{\lambda}{2}e^{\lambda z}$$
+
+Because Z is symmetric to -Z at zero we can take the inverse at zero
+
+When $Z \geq 0$:
+
+$$f_{Z}(-z) = \frac{\lambda}{2}e^{-\lambda z}$$
+
+Lastly we combine for a final solution of:
+
+$$fZ(z) = (\frac{1}{2})\lambda e^{-\lambda |z|}$$
